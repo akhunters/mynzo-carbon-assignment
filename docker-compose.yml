@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  db:
+    platform: linux/x86_64
+    image: mysql:8.0.22
+    environment: 
+      MYSQL_ROOT_PASSWORD: root 
+      MYSQL_USER: avinash
+      MYSQL_PASSWORD: '1234'
+      MYSQL_DATABASE: 'assginment_db'
+    command: |
+      --default-authentication-plugin=mysql_native_password
+      --sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+      --server-id=1
+      --log-bin=logbin
+      --binlog-format=ROW 
+      --binlog-do-db=assignment_db
+    ports:
+      - '${DB_PORT:-3306}:3306'
