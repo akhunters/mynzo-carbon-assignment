@@ -62,7 +62,7 @@ class AuthService {
       };
     }
 
-    if (!bcrypt.compareSync(req.otp, user.otp)) {
+    if (!bcrypt.compareSync(req.otp, user.otp || "")) {
       return {
         error: "Invalid Otp",
       };
