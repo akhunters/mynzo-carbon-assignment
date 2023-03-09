@@ -14,6 +14,9 @@ export class User {
   @Column({ type: "varchar", length: 255, nullable: false, unique: true })
   email: string;
 
+  @Column({ type: "varchar", length: 255, nullable: true })
+  otp: string;
+
   @CreateDateColumn({ type: "timestamp" })
   created_at: Date;
 

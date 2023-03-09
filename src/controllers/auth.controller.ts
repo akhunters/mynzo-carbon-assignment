@@ -11,7 +11,20 @@ class AuthController {
   login = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const data = await this.authService.login(req.body);
-      res.status(200).json(data);
+      const status = data?.error ? 400 : 200;
+      res.status(status).json(data);
+    } catch (err) {
+      next({
+        message: err?.message,
+      });
+    }
+  };
+
+  verifyOtp = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const data = await this.authService.verifyOtp(req.body);
+      const status = data?.error ? 400 : 200;
+      res.status(status).json(data);
     } catch (err) {
       next({
         message: err?.message,
