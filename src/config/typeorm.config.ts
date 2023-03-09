@@ -25,4 +25,12 @@ const config: DataSourceOptions = {
 
 const TypeormConnection = new DataSource(config);
 
+TypeormConnection.initialize()
+  .then(async() => {
+    console.log('Datasource initialized')
+  })
+  .catch((err) => {
+    console.error("Error", err);
+  })
+
 export default TypeormConnection;
