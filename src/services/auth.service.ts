@@ -35,7 +35,12 @@ class AuthService {
     const generatedOTP = this.generateOTP();
     console.log("OTP: ", generatedOTP);
 
-    const token = jwt.sign(user, process.env.SECRET);
+    const token = jwt.sign(
+      {
+        ...user,
+      },
+      process.env.SECRET
+    );
 
     return {
       data: signedInUser,
